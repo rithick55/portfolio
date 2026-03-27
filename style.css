@@ -176,7 +176,7 @@ header.sticky {
     color: var(--accent);
 }
 .logo span {
-    color: var(--text-main);
+    color: var(--text);
 }
 
 .nav-links {
