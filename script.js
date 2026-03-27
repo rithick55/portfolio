@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const typingText = document.getElementById('typing-text');
-    const professions = ['Full Stack Developer', 'AI Enthusiast', 'UI/UX Designer', 'Software Engineer'];
+    const professions = ['Full Stack Developer', 'UI/UX Designer', 'Software Engineer'];
     let profIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
