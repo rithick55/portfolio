@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
 
-    
+
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', () => {
         const currentTheme = body.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         body.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateThemeIcon(theme) {
         if (theme === 'dark') {
-            themeIcon.className = 'fas fa-sun'; 
+            themeIcon.className = 'fas fa-sun';
         } else {
-            themeIcon.className = 'fas fa-moon'; 
+            themeIcon.className = 'fas fa-moon';
         }
     }
 
-    
+
     const typingText = document.getElementById('typing-text');
     const professions = ['Full Stack Developer', 'AI Enthusiast', 'UI/UX Designer', 'Software Engineer'];
     let profIndex = 0;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function typeEffect() {
         const currentProf = professions[profIndex];
-        
+
         if (isDeleting) {
             typingText.textContent = currentProf.substring(0, charIndex - 1);
             charIndex--;
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!isDeleting && charIndex === currentProf.length) {
             isDeleting = true;
-            typeSpeed = 2000; 
+            typeSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             profIndex = (profIndex + 1) % professions.length;
@@ -71,27 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target); 
+                revealObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    
+
     const header = document.getElementById('header');
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
     window.addEventListener('scroll', () => {
-        
+
         if (window.scrollY > 50) {
             header.classList.add('sticky');
         } else {
             header.classList.remove('sticky');
         }
 
-        
+
         let current = "";
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
@@ -112,32 +112,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute('href');
-            const targetBlock = document.querySelector(targetId);
-            
-            window.scrollTo({
-                top: targetBlock.offsetTop - 70,
-                behavior: 'smooth'
-            });
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                const targetBlock = document.querySelector(targetId);
+                if (targetBlock) {
+                    window.scrollTo({
+                        top: targetBlock.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         });
     });
 
-    
+
+    // 6. Contact Form Handle
+    console.log("Contact form script initialized");
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            console.log("Form submission triggered");
+
             const submitBtn = contactForm.querySelector('button');
             const originalText = submitBtn.innerHTML;
-            
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            
+
+            // Get form data
             const formData = new FormData(contactForm);
-            
-           
+
+            // Send to FormSubmit
             fetch(contactForm.action, {
                 method: "POST",
                 body: formData,
@@ -145,27 +152,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Accept': 'application/json'
                 }
             })
-            .then(response => {
-                if (response.ok) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitBtn.style.background = '#10b981'; // Success green
-                    contactForm.reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                submitBtn.innerHTML = '<i class="fas fa-times"></i> Error Occurred';
-                submitBtn.style.background = '#ef4444'; 
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = ''; 
-                }, 3000);
-            });
+                .then(response => {
+                    console.log("Response received:", response.status);
+                    if (response.ok) {
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                        submitBtn.style.background = '#10b981'; // Success green
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error("Submission Error:", error);
+                    submitBtn.innerHTML = '<i class="fas fa-times"></i> Error Occurred';
+                    submitBtn.style.background = '#ef4444'; // Error red
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = ''; // Reset
+                    }, 3000);
+                });
         });
     }
 });
