@@ -21,10 +21,11 @@
 
     --primary-bg: #0f172a;
     --secondary-bg: #1e293b;
-    --accent:#F39F5A;
-    --accent-hover: #a78bfa;
+    --accent:#facc15;
+    --accent-hover: #eab308;
     --text-main: white;
     --text-muted: #94a3b8;
+    --btn-text: #000;
     --card-bg: rgba(30, 41, 59, 0.6);
     --card-border: rgba(139, 92, 246, 0.2);
     --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.3);
@@ -169,12 +170,14 @@ header.sticky {
     width: 100%;
 }
 
-.logo span.fix{
+.logo {
     font-size: 1.8rem;
-    color:var(--accent);
 }
+.logo span.fix {
+    color: var(--accent);
+}
+
 .logo span.not {
-    font-size: 1.8rem;
     color: var(--text-main);
 }
 
@@ -265,7 +268,7 @@ header.sticky {
 
 .btn-primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--btn-text);
     border: none;
 }
 
