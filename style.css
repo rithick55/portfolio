@@ -269,6 +269,7 @@ header.sticky {
 .btn-primary {
     background: var(--accent);
     color: var(--btn-text);
+    box-shadow: 0 6px 14px rgba(250, 204, 21, 0.3);
     border: none;
 }
 
