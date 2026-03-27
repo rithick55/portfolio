@@ -21,7 +21,7 @@
 
     --primary-bg: #0f172a;
     --secondary-bg: #1e293b;
-    --accent: yellow;
+    --accent:yellow;
     --accent-hover: #a78bfa;
     --text-main: white;
     --text-muted: #94a3b8;
@@ -171,7 +171,7 @@ header.sticky {
 
 .logo {
     font-size: 1.8rem;
-    color: var(--accent);
+    color: --accent;
 }
 .logo span {
     color: var(--text-main);
