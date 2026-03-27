@@ -171,7 +171,7 @@ header.sticky {
 
 .logo span.fix{
     font-size: 1.8rem;
-    color: --accent;
+    color:var(--accent);
 }
 .logo span.not {
     color: var(--text-main);
