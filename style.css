@@ -6,7 +6,7 @@
     --secondary-bg: #e2e8f0;
     --accent: #6d28d9;
     --accent-hover: #5b21b6;
-    --text-main: #1e293b;
+    --text-main: black;
     --text-muted: #64748b;
     --card-bg: rgba(255, 255, 255, 0.7);
     --card-border: rgba(109, 40, 217, 0.1);
@@ -21,9 +21,9 @@
 
     --primary-bg: #0f172a;
     --secondary-bg: #1e293b;
-    --accent: #8b5cf6;
+    --accent: yellow;
     --accent-hover: #a78bfa;
-    --text-main: #f1f5f9;
+    --text-main: white;
     --text-muted: #94a3b8;
     --card-bg: rgba(30, 41, 59, 0.6);
     --card-border: rgba(139, 92, 246, 0.2);
