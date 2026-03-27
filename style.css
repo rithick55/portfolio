@@ -21,7 +21,7 @@
 
     --primary-bg: #0f172a;
     --secondary-bg: #1e293b;
-    --accent:yellow;
+    --accent:#FFCC00;
     --accent-hover: #a78bfa;
     --text-main: white;
     --text-muted: #94a3b8;
@@ -169,11 +169,11 @@ header.sticky {
     width: 100%;
 }
 
-.logo {
+.logo span.fix{
     font-size: 1.8rem;
     color: --accent;
 }
-.logo span {
+.logo span.not {
     color: var(--text-main);
 }
 
